@@ -9,7 +9,7 @@ describe("Rotating 3x3 shape", () => {
      GHI`
   );
 
-  xit("initial orientation", () => {
+  it("initial orientation", () => {
     expect(shape.toString()).to.equalShape(
       `ABC
        DEF
