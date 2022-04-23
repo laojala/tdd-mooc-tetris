@@ -1,6 +1,6 @@
+import { shapeToString } from "./common.mjs";
+
 export class Board {
-  width;
-  height;
 
   constructor(width, height) {
     this.width = width;
@@ -9,13 +9,16 @@ export class Board {
     this.moving = [];
   }
 
+  get_width() {
+    return this.width;
+  }
+
+  get_height() {
+    return this.height;
+  }
+
   toString() {
-    let board_string = "";
-    for (let row = 0; row < this.height; row++) {
-      board_string += this.layout[row].join("");
-      board_string += "\n";
-    }
-    return board_string;
+    return shapeToString(this);
   }
 
   drop(block) {
