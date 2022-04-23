@@ -1,8 +1,10 @@
 export function shapeToString(shape) {
-  let board_string = "";
-    for (let row = 0; row < shape.get_height(); row++) {
-      board_string += shape.layout[row].join("");
-      board_string += "\n";
+  let string_representation = "";
+    for (let row = 0; row < shape.getHeight(); row++) {
+    for (let column = 0; column < shape.getWidth(); column++) {
+      string_representation += shape.getBlock(row,column)
     }
-    return board_string;
+    string_representation += "\n";
+  }
+    return string_representation;
 }

@@ -9,12 +9,16 @@ export class Board {
     this.moving = [];
   }
 
-  get_width() {
+  getWidth() {
     return this.width;
   }
 
-  get_height() {
+  getHeight() {
     return this.height;
+  }
+
+  getBlock(row, col) {
+    return this.layout[row][col]
   }
 
   toString() {
