@@ -1,12 +1,26 @@
+
+import { shapeToString } from "./common.mjs";
 export class RotatingShape {
-  shape;
 
   constructor(shape) {
     this.shape = trimShape(shape);
+    console.log(this.shape)
+  }
+
+  getWidth() {
+    return this.shape[0].length;
+  }
+
+  getHeight() {
+    return this.shape.length;
+  }
+
+  getBlock(row, col) {
+    return this.shape[row][col]
   }
 
   toString() {
-    return stringify(this.shape);
+    return shapeToString(this);
   }
 
   rotateLeft() {
