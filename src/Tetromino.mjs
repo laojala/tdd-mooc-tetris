@@ -8,15 +8,12 @@ export class Tetromino {
      ...`
   );
 
-
   constructor(initial_shape) {
-    const tetromino = new RotatingShape(initial_shape);
-    this.shape = tetromino.shape
-    console.log(tetromino.shape.toString())
+    this.tetromino = new RotatingShape(initial_shape);
   }
 
   toString() {
-    return this.shape.toString();
+    return this.tetromino.toString();
   }
 
 }
