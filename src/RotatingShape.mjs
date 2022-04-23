@@ -1,17 +1,35 @@
+
+import { shapeToString } from "./common.mjs";
 export class RotatingShape {
-  shape;
 
   constructor(shape) {
-    this.shape = trimShape(shape);
+    if (typeof shape === 'string') {
+      this.shape = trimShape(shape)
+    }
+    else {
+      this.shape = shape
+    }
+  }
+
+  getWidth() {
+    return this.shape[0].length;
+  }
+
+  getHeight() {
+    return this.shape.length;
+  }
+
+  getBlock(row, col) {
+    return this.shape[row][col]
   }
 
   toString() {
-    return stringify(this.shape);
+    return shapeToString(this);
   }
 
   rotateLeft() {
-    const height = this.shape.length;
-    const length = this.shape[0].length;
+    const height = this.getHeight()
+    const length = this.getWidth()
 
     let rotated = [];
 
@@ -23,24 +41,11 @@ export class RotatingShape {
       rotated.push(rotated_row);
     }
 
-    return stringify(rotated);
+    return new RotatingShape(rotated)
   }
 
   rotateRight() {
-    const height = this.shape.length;
-    const length = this.shape[0].length;
-
-    let rotated = [];
-
-    for (let column = 0; column < length; column++) {
-      let rotated_row = "";
-      for (let row = height - 1; row >= 0; row--) {
-        rotated_row += this.shape[row][column];
-      }
-      rotated.push(rotated_row);
-    }
-
-    return stringify(rotated);
+    return this.rotateLeft().rotateLeft().rotateLeft();
   }
 }
 
