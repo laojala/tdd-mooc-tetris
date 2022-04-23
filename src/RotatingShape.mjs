@@ -4,7 +4,8 @@ export class RotatingShape {
 
   constructor(shape) {
     if (typeof shape === 'string') {
-      this.shape = trimShape(shape)
+      let rows = shape.split("\n");
+      this.shape = rows.map((element) => element.replaceAll(" ", ""));
     }
     else {
       this.shape = shape
@@ -40,7 +41,6 @@ export class RotatingShape {
       }
       rotated.push(rotated_row);
     }
-
     return new RotatingShape(rotated)
   }
 
@@ -49,16 +49,3 @@ export class RotatingShape {
   }
 }
 
-function trimShape(shape) {
-  let rows = shape.split("\n");
-  let new_rows = rows.map((element) => element.replaceAll(" ", ""));
-  return new_rows;
-}
-
-function stringify(array) {
-  let representation = "";
-  array.forEach((element) => {
-    representation = representation + element + "\n";
-  });
-  return representation;
-}
