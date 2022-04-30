@@ -1,7 +1,6 @@
 import { shapeToString } from "./common.mjs";
 
 export class Board {
-
   constructor(width, height) {
     this.width = width;
     this.height = height;
@@ -18,7 +17,7 @@ export class Board {
   }
 
   getBlock(row, col) {
-    return this.layout[row][col]
+    return this.layout[row][col];
   }
 
   toString() {
