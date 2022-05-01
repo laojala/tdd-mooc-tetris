@@ -57,3 +57,53 @@ describe("Falling tetrominoes", () => {
     );
   });
 });
+
+describe("Falling O shape", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(10, 6);
+  });
+
+  it("start from the top middle", () => {
+    board.drop(Tetromino.O_SHAPE);
+
+    expect(board.toString()).to.equalShape(
+      `....OO....
+       ....OO....
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  it("stop when they hit the bottom", () => {
+    board.drop(Tetromino.O_SHAPE);
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       ....OO....
+       ....OO....`
+    );
+  });
+
+  it("stop when they land on another block", () => {
+    board.drop(Tetromino.T_SHAPE);
+    fallToBottom(board);
+    board.drop(Tetromino.O_SHAPE);
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ....OO....
+       ....OO....
+       ....T.....
+       ...TTT....`
+    );
+  });
+});
