@@ -10,7 +10,7 @@ class DropBlock {
   function setDropCoordinatesList(board_center, color) {
     switch (color) {
       case "T":
-        return "foo"
+        return ["foo"]
       default:
         return [0,board_center]
     }
@@ -44,11 +44,9 @@ export class Board {
   drop(block) {
     
     if (this.moving.length == 0) {
-
       const dropping = new DropBlock(block, this.center)
-
-      this.layout[0][this.center] = block.color;
-      this.moving = Array.from([0, this.center]);
+      this.layout[0][this.center] = dropping.color;
+      this.moving = dropping.coordinates;
 
     } else {
       throw "already falling";
