@@ -2,19 +2,17 @@ import { shapeToString } from "./common.mjs";
 
 class DropBlock {
   constructor(block, board_center) {
-    this.color = block.getColor() 
-    this.coordinates = setDropCoordinatesList(board_center, this.color)
+    this.color = block.getColor();
+    this.coordinates = setDropCoordinatesList(board_center, this.color);
   }
-
+}
+function setDropCoordinatesList(board_center, color) {
+  switch (color) {
+    case "T":
+      return ["foo"];
+    default:
+      return [[0, board_center]];
   }
-  function setDropCoordinatesList(board_center, color) {
-    switch (color) {
-      case "T":
-        return ["foo"]
-      default:
-        return [[0,board_center]]
-    }
-
 }
 export class Board {
   constructor(width, height) {
@@ -22,7 +20,7 @@ export class Board {
     this.height = height;
     this.layout = setInitialLayout(width, height);
     this.moving = [];
-    this.center =  Math.floor(this.width / 2);
+    this.center = Math.floor(this.width / 2);
   }
 
   getWidth() {
@@ -42,26 +40,22 @@ export class Board {
   }
 
   drop(block) {
-    
     if (this.moving.length == 0) {
-      const dropping = new DropBlock(block, this.center)
+      const dropping = new DropBlock(block, this.center);
       this.layout[0][this.center] = dropping.color;
       this.moving = dropping.coordinates;
-
     } else {
       throw "already falling";
     }
   }
 
-
   tick() {
-
     let new_moving = [];
 
     for (let item = 0; item < this.moving.length; item++) {
       let y_moving = this.moving[item][0];
       let x_moving = this.moving[item][1];
-      
+
       if (
         y_moving < this.height - 1 &&
         this.layout[y_moving + 1][x_moving] == "."
@@ -70,12 +64,11 @@ export class Board {
         this.layout[y_moving][x_moving] = ".";
         this.layout[y_moving + 1][x_moving] = color;
         new_moving.push([y_moving + 1, x_moving]);
-      }  else {
+      } else {
         break;
       }
     }
     this.moving = new_moving;
-
   }
 
   hasFalling() {

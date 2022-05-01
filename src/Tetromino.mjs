@@ -5,7 +5,7 @@ export class Tetromino {
     `.T.
      TTT
      ...`,
-     "T"
+    "T"
   );
 
   static I_SHAPE = new Tetromino(
@@ -34,17 +34,17 @@ export class Tetromino {
   }
 
   getShape() {
-    return this.tetromino.shape
+    return this.tetromino.shape;
   }
 
   getColor() {
-    return this.color
+    return this.color;
   }
 
   rotateI() {
     if (this.tetromino.shape[2][0] == "I") {
       return new Tetromino(
-     `..I..
+        `..I..
       ..I..
       ..I..
       ..I..

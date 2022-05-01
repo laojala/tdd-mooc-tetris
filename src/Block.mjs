@@ -3,13 +3,13 @@ export class Block {
 
   constructor(color) {
     this.color = color;
-    this. shape = [color]
+    this.shape = [color];
   }
 
   getShape() {
-    return this.shape
+    return this.shape;
   }
   getColor() {
-    return this.color
+    return this.color;
   }
 }
