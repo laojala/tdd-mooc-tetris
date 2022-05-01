@@ -107,3 +107,55 @@ describe("Falling O shape", () => {
     );
   });
 });
+
+describe("Falling I shape", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(10, 6);
+  });
+
+  it("start from the top middle", () => {
+    board.drop(Tetromino.I_SHAPE);
+
+    expect(board.toString()).to.equalShape(
+      `...IIII...
+      ..........
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  it("stop when they hit the bottom", () => {
+    board.drop(Tetromino.I_SHAPE);
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       ..........
+       ...IIII...`
+    );
+  });
+
+  it("stop when they land on another block", () => {
+    board.drop(Tetromino.T_SHAPE);
+    fallToBottom(board);
+    board.drop(Tetromino.O_SHAPE);
+    fallToBottom(board);
+    board.drop(Tetromino.I_SHAPE);
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ...IIII...
+       ....OO....
+       ....OO....
+       ....T.....
+       ...TTT....`
+    );
+  });
+});

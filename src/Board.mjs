@@ -16,6 +16,13 @@ function setDropCoordinatesList(center, color) {
         [1, center],
         [0, center - 1],
       ];
+    case "I":
+      return [
+        [0, center],
+        [0, center - 2],
+        [0, center - 1],
+        [0, center + 1],
+      ];
     case "O":
       return [
         [1, 4],
