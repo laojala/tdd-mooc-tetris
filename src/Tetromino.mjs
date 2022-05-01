@@ -4,7 +4,8 @@ export class Tetromino {
   static T_SHAPE = new Tetromino(
     `.T.
      TTT
-     ...`
+     ...`,
+     "T"
   );
 
   static I_SHAPE = new Tetromino(
@@ -25,44 +26,52 @@ export class Tetromino {
 
   constructor(initial_shape, type = "") {
     this.tetromino = new RotatingShape(initial_shape);
-    this.type = type;
+    this.color = type;
   }
 
   toString() {
     return this.tetromino.toString();
   }
 
+  getShape() {
+    return this.tetromino.shape
+  }
+
+  getColor() {
+    return this.color
+  }
+
   rotateI() {
     if (this.tetromino.shape[2][0] == "I") {
       return new Tetromino(
-        `..I..
+     `..I..
       ..I..
       ..I..
       ..I..
       .....`,
-        this.type
+        this.color
       );
     }
     return Tetromino.I_SHAPE;
   }
 
   rotateRight() {
-    if (this.type == "I") {
+    if (this.color == "I") {
       return this.rotateI();
     }
-    if (this.type == "O") {
+    if (this.color == "O") {
       return Tetromino.O_SHAPE;
     }
-    return new Tetromino(this.tetromino.rotateRight().toString(), this.type);
+    return new Tetromino(this.tetromino.rotateRight().toString(), this.color);
   }
 
   rotateLeft() {
-    if (this.type == "I") {
+    if (this.color == "I") {
       return this.rotateI();
     }
-    if (this.type == "O") {
+    if (this.color == "O") {
       return Tetromino.O_SHAPE;
     }
-    return new Tetromino(this.tetromino.rotateLeft().toString(), this.type);
+    return new Tetromino(this.tetromino.rotateLeft().toString(), this.color);
   }
 }

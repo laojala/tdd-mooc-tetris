@@ -1,11 +1,28 @@
 import { shapeToString } from "./common.mjs";
 
+class DropBlock {
+  constructor(block, board_center) {
+    this.color = block.getColor() 
+    this.coordinates = setDropCoordinatesList(board_center, this.color)
+  }
+
+  }
+  function setDropCoordinatesList(board_center, color) {
+    switch (color) {
+      case "T":
+        return "foo"
+      default:
+        return [0,board_center]
+    }
+
+}
 export class Board {
   constructor(width, height) {
     this.width = width;
     this.height = height;
     this.layout = setInitialLayout(width, height);
     this.moving = [];
+    this.center =  Math.floor(this.width / 2);
   }
 
   getWidth() {
@@ -16,7 +33,7 @@ export class Board {
     return this.height;
   }
 
-  getBlock(row, col) {
+  getSpot(row, col) {
     return this.layout[row][col];
   }
 
@@ -25,10 +42,14 @@ export class Board {
   }
 
   drop(block) {
+    
     if (this.moving.length == 0) {
-      let center = Math.floor(this.width / 2);
-      this.layout[0][center] = block.color;
-      this.moving = Array.from([0, center]);
+
+      const dropping = new DropBlock(block, this.center)
+
+      this.layout[0][this.center] = block.color;
+      this.moving = Array.from([0, this.center]);
+
     } else {
       throw "already falling";
     }

@@ -19,7 +19,7 @@ export class RotatingShape {
     return this.shape.length;
   }
 
-  getBlock(row, col) {
+  getSpot(row, col) {
     return this.shape[row][col];
   }
 
@@ -36,7 +36,7 @@ export class RotatingShape {
     for (let column = length - 1; column >= 0; column--) {
       let rotated_row = "";
       for (let row = 0; row < height; row++) {
-        rotated_row += this.getBlock(row, column);
+        rotated_row += this.getSpot(row, column);
       }
       rotated.push(rotated_row);
     }
