@@ -7,13 +7,14 @@ class DropBlock {
   }
 }
 function setDropCoordinatesList(center, color) {
+  // does not work if indexes are not in a right order
   switch (color) {
     case "T":
       return [
-        [1, center - 2],
         [1, center - 1],
+        [1, center - 2],
         [1, center],
-        [0, center - 1]
+        [0, center - 1],
       ];
     default:
       return [[0, center]];
@@ -67,10 +68,12 @@ export class Board {
       let y_moving = this.moving[item][0];
       let x_moving = this.moving[item][1];
 
+      // all spots under the "moving" must have space
+
       if (
-        y_moving < this.height - 1 &&
-        (this.layout[y_moving + 1][x_moving] == "." ||
-          isPointInLayout([y_moving + 1, x_moving], this.moving))
+        (y_moving < this.height - 1 &&
+          this.layout[y_moving + 1][x_moving] == ".") ||
+        canMove([y_moving + 1, x_moving], this.moving)
       ) {
         let color = this.layout[y_moving][x_moving];
         this.layout[y_moving][x_moving] = ".";
@@ -89,9 +92,9 @@ export class Board {
   }
 }
 
-function isPointInLayout(point, layout) {
+function canMove(point, moving) {
   const a = JSON.stringify(point);
-  const b = JSON.stringify(layout);
+  const b = JSON.stringify(moving);
   var c = a.indexOf(b);
   if (c != -1) {
     return true;
