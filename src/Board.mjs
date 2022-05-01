@@ -10,10 +10,10 @@ function setDropCoordinatesList(center, color) {
   switch (color) {
     case "T":
       return [
-        [0, center - 1],
         [1, center - 2],
         [1, center - 1],
         [1, center],
+        [0, center - 1]
       ];
     default:
       return [[0, center]];
